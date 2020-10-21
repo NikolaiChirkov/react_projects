@@ -4,7 +4,37 @@ import Tours from './Tours';
 const url = 'https://course-api.netlify.app/api/react-tours-project';
 
 function App() {
-  return <h2>Tours Project Setup</h2>;
+  const [loading, setLoading] = useState(true);
+  const [tours, setTours] = useState([]);
+
+  const fetchTours = async () => {
+    setLoading(true);
+
+    try {
+      const response = await fetch(url);
+      const tours = await response.json();
+      setLoading(false);
+      setTours(tours);
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+    }
+    
+  }
+
+  useEffect(() => {
+    fetchTours();
+  }, []);
+
+  if (loading) {
+    return <main>
+      <Loading />
+    </main>
+  }
+
+  return <main>
+    <Tours />
+  </main>;
 }
 
 export default App;
