@@ -6,9 +6,9 @@ const Hero = () => {
   const { closeSubmenu } = useGlobalContext;
 
   return <section className="hero">
-    <div className="hero-info">
+    <div className="hero-center">
       <article className="hero-info">
-        <h1>Payments infrastructure for the internet</h1>
+        <h1>Payments infrastructure <br /> for the internet</h1>
         <p>
           Millions of companies of all sezes-from startup to 
           Fortune 500s-use
