@@ -3,9 +3,26 @@ import phoneImg from './images/phone.svg'
 import { useGlobalContext } from './context';
 
 const Hero = () => {
-  const {} = useGlobalContext;
+  const { closeSubmenu } = useGlobalContext;
 
-  return <h2>hero component</h2>
+  return <section className="hero">
+    <div className="hero-info">
+      <article className="hero-info">
+        <h1>Payments infrastructure for the internet</h1>
+        <p>
+          Millions of companies of all sezes-from startup to 
+          Fortune 500s-use
+          Stripes's software and APIs to accept payments, send
+          payouts, and
+          manage their businesses online.
+        </p>
+        <button className="btn">start now</button>
+      </article>
+      <article className="hero-images">
+        <img src={phoneImg} className="phone-img" alt="phone"></img>
+      </article>
+    </div>
+  </section>
 }
 
 export default Hero
