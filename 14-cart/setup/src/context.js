@@ -1,4 +1,4 @@
-import React, { useState, useContext, useReducer, useEffect } from 'react'
+import React, { useContext, useReducer, useEffect } from 'react'
 import cartItems from './data'
 import reducer from './reducer'
 const url = 'https://course-api.netlify.app/api/react-useReducer-cart-project'
@@ -22,19 +22,15 @@ const AppProvider = ({ children }) => {
     dispatch({type: "REMOVE_ITEM", payload: id});
   }
 
-  const increaseAmount = (id) => {
-    dispatch({type: "INCREASE_AMOUNT", payload: id});
-  }
-
-  const decreaseAmount = (id) => {
-    dispatch({type: "DECREASE_AMOUNT", payload: id});
-  }
-
   const fetchData = async () => {
     dispatch({type: "LOADING"});
     const resoponse = await fetch(url);
     const cart = await resoponse.json();
     dispatch({type: "DISPLAY_ITEMS", payload: cart});
+  }
+
+  const toggleAmount = (id, type) => {
+    dispatch({type: "TOGGLE_AMOUNT", payload: {id, type}})
   }
 
   useEffect(() => {
@@ -51,8 +47,7 @@ const AppProvider = ({ children }) => {
         ...state,
         clearCart,
         removeItem,
-        increaseAmount,
-        decreaseAmount
+        toggleAmount
       }}
     >
       {children}
