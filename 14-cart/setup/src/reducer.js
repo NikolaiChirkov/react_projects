@@ -8,12 +8,26 @@ const reducer = (state, action) => {
         case 'REMOVE_ITEM':
             return {
                 ...state, 
-                cart: state.cart.filter((CartItem) => CartItem.id !== action.payload)
+                cart: state.cart.filter((cartItem) => cartItem.id !== action.payload)
             }
         break;
-    }
+        case 'INCREASE_AMOUNT':
+            let tempCart = state.cart.map((cartItem) => {
+                if (cartItem.id === action.payload) {
+                    return {...cartItem, amount: cartItem.amount + 1}
+                }
 
-    return state;
+                return cartItem;
+            });
+            return {
+                ...state,
+                cart: tempCart
+            }
+        break;
+        default:
+            return state;
+        break;
+    }
 }
 
 export default reducer;
