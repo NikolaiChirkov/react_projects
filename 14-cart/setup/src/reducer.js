@@ -2,6 +2,10 @@ import CartItem from "./CartItem";
 
 const reducer = (state, action) => {
     switch (action.type) {
+        case 'LOADING':
+            return {...state, loading: true}
+        break;
+
         case 'CLEAR_CART':
             return {...state, cart: []}
         break;
@@ -56,6 +60,10 @@ const reducer = (state, action) => {
             total = parseFloat(total.toFixed());
 
             return {...state, total, amount}
+        break;
+
+        case 'DISPLAY_ITEMS':
+            return {...state, cart: action.payload, loading: false}
         break;
 
         default:
