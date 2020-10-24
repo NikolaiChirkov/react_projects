@@ -5,12 +5,14 @@ const reducer = (state, action) => {
         case 'CLEAR_CART':
             return {...state, cart: []}
         break;
+
         case 'REMOVE_ITEM':
             return {
                 ...state, 
                 cart: state.cart.filter((cartItem) => cartItem.id !== action.payload)
             }
         break;
+
         case 'INCREASE_AMOUNT':
             let tempCartIncrease = state.cart.map((cartItem) => {
                 if (cartItem.id === action.payload) {
@@ -24,6 +26,7 @@ const reducer = (state, action) => {
                 cart: tempCartIncrease
             }
         break;
+
         case 'DECREASE_AMOUNT':
             let tempCartDecrease = state.cart.map((cartItem) => {
                 if (cartItem.id === action.payload) {
@@ -35,6 +38,26 @@ const reducer = (state, action) => {
                 ...state,
                 cart: tempCartDecrease
             }
+        break;
+
+        case 'GET_TOTALS':
+            let { total, amount } = state.cart.reduce((cartTotal, cartItem) => {
+                const { price, amount } = cartItem;
+                const itemTotal = price * amount;
+
+                cartTotal.total += itemTotal;
+                cartTotal.amount += amount;
+                return cartTotal
+            }, {
+                total: 0,
+                amount: 0
+            });
+
+            total = parseFloat(total.toFixed());
+
+            return {...state, total, amount}
+        break;
+
         default:
             return state;
         break;
