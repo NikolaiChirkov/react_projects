@@ -2,9 +2,15 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div>
-      <h2>about page</h2>
-    </div>
+    <section className="section about-section">
+      <h1 className="section-title">About us</h1>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos dolorus
+        animi pariatur dignissimos nulla iure dolorum et fugit minus hic.
+        Adipisci sint enim , sit quo impedit doloribus accusantium, ipsum esse
+        distinctio accusantium laborum illum similique cupiditate consequatur
+        quasi ab. Iure.
+      </p>
+    </section>
   )
 }
 
